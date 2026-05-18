@@ -36,14 +36,12 @@ jobs:
           pip install pymdown-extensions
 
       - name: Build
-        run: |
-          cd docs
-          mkdocs build
+        run: mkdocs build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/site
+          path: site
 
   deploy:
     environment:
