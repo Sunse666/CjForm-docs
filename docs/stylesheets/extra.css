@@ -1,13 +1,13 @@
-/* CJForm 文档自定义样式 */
+/* Vimina 文档自定义样式 - 参考 maliang */
 
-/* Text font, code font, and search icon */
+/*文本字体、代码字体以及搜索框图标*/
 :root {
-    --md-text-font: "Microsoft YaHei", "LXGW WenKai Screen", sans-serif;
-    --md-code-font: "Consolas", "Cascadia Code", monospace;
+    --md-text-font: "LXGW WenKai Screen";
+    --md-code-font: "Comic Mono", "Consolas", "LXGW WenKai Screen";
     --md-search-result-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7c-.41-.25-.8-.56-1.14-.9a6.48 6.48 0 0 1-.36-9.18C13.69 9.5 17.33 9.13 20 11V8zm-1 7V3.5L18.5 9zm7.31 9.9c1.33-2.11.69-4.9-1.4-6.22-2.11-1.33-4.91-.68-6.22 1.4-1.34 2.11-.69 4.89 1.4 6.22 1.46.93 3.32.93 4.79.02L22 23.39 23.39 22zm-3.81.1a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5"/></svg>');
 }
 
-/* Light mode */
+/*亮色样式*/
 [data-md-color-scheme="default"] {
     --md-primary-fg-color: rgba(232, 232, 232, 0.7);
     --md-header-bg-color: rgba(232, 232, 232, 0.7);
@@ -19,7 +19,7 @@
     --md-footer-fg-color--lighter: #777777;
 }
 
-/* Dark mode */
+/*暗色样式*/
 [data-md-color-scheme="slate"] {
     --md-primary-fg-color: rgba(17, 16, 17, 0.7);
     --md-header-bg-color: rgba(17, 16, 17, 0.7);
@@ -28,7 +28,7 @@
     --md-footer-bg-color--dark: #101010;
 }
 
-/* Header frosted glass effect */
+/*顶栏磨砂玻璃效果*/
 [data-md-color-primary="black"] .md-header {
     background-color: var(--md-header-bg-color) !important;
 }
@@ -37,6 +37,7 @@
     background-color: var(--md-header-bg-color) !important;
 }
 
+/*顶栏磨砂玻璃效果*/
 .md-header {
     transition: none;
     -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -44,7 +45,7 @@
     background-color: var(--md-header-bg-color) !important;
 }
 
-/* Hide tab navigation */
+/*导航标签栏样式 - 隐藏*/
 .md-tabs {
     display: none !important;
 }
@@ -57,7 +58,6 @@
    display: table;
 }
 
-/* Grid card styling */
 .md-typeset .grid.cards > ul > li {
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 0.5rem;
@@ -69,42 +69,38 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Button margins */
 .md-typeset .md-button {
   margin: 0.5rem;
 }
 
-/* Code block rounding */
 .md-typeset pre > code {
   border-radius: 0.5rem;
 }
 
-/* Admonition rounding */
 .md-typeset .admonition {
   border-radius: 0.5rem;
 }
 
-/* Tabbed content rounding */
 .md-typeset .tabbed-set {
   border-radius: 0.5rem;
 }
 
-/* Center mermaid diagrams */
+/*居中 mermaid 绘制的图*/
 .mermaid {
     text-align: center;
 }
 
-/* Small caption text */
+/*图片标题小字号*/
 figcaption {
     font-size: small;
 }
 
-/* Center tables */
+/*表格居中*/
 .md-typeset__scrollwrap {
     text-align: center;
 }
 
-/* Blur non-highlighted code lines */
+/*代码块非高亮行模糊*/
 .blur.highlight .hll {
     background-color: unset;
     box-shadow: unset;
@@ -119,33 +115,34 @@ figcaption {
     filter: none;
 }
 
-/* Mindmap border */
+/*思维导图边框美化*/
 div.mkdocs-markmap {
     border-radius: .2rem;
 }
 
-/* Mindmap text color fix */
+/*思维导图文本颜色暗色模式修复及字体修复*/
 .mkdocs-markmap div {
     color: var(--md-typeset-color);
     font-family: var(--md-code-font);
 }
 
+/*思维导图代码颜色暗色模式修复*/
 .mkdocs-markmap div code {
     color: var(--md-code-fg-color);
     background-color: var(--md-code-bg-color);
 }
 
-/* Mindmap node color fix */
+/*思维导图节点颜色暗色模式修复*/
 .markmap {
     --markmap-circle-open-bg: var(--md-code-bg-color) !important;
 }
 
-/* Smaller inline math */
+/*内联公式字体略微减小*/
 span.arithmatex {
     font-size: small;
 }
 
-/* Hide elements when printing */
+/*打印时隐藏部分元素*/
 @media print {
     .md-tooltip2 {
         display: none;

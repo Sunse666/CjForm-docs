@@ -16,7 +16,7 @@ use_directory_urls: true
 strict: false
 
 markdown_extensions:
-  ###### Python Markdown 配置
+  ###### Python Markdown 配置（markdown 基础语法）
 
   - admonition
   - meta
@@ -27,7 +27,7 @@ markdown_extensions:
   - toc:
       marker: ""
       anchorlink: false
-      permalink: "&para;"
+      permalink: ¶
       permalink_title: ""
       permalink_leading: false
       baselevel: 1
@@ -38,7 +38,7 @@ markdown_extensions:
         kwds:
           case: lower
 
-  ###### PyMdown Extensions 配置
+  ###### PyMdown Extensions 配置（markdown 扩展语法）
 
   - pymdownx.extra
 
@@ -102,7 +102,7 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-      default_lang: cj
+      default_lang: python
 
   - pymdownx.magiclink:
       user: "Sunse666"
@@ -161,19 +161,19 @@ theme:
     - content.code.annotate
     - content.tabs.link
     - content.tooltips
-  palette:
-    - media: "(prefers-color-scheme)"
+  palette: # 界面整体样式
+    - media: "(prefers-color-scheme)" # 系统主题
       toggle:
         icon: material/theme-light-dark
         name: 系统主题
-    - media: "(prefers-color-scheme: light)"
+    - media: "(prefers-color-scheme: light)" # 亮色主题
       scheme: default
       primary: white
       accent: light blue
       toggle:
         icon: material/weather-sunny
         name: 明亮主题
-    - media: "(prefers-color-scheme: dark)"
+    - media: "(prefers-color-scheme: dark)" # 暗色主题
       scheme: slate
       primary: black
       accent: yellow
@@ -181,6 +181,8 @@ theme:
         icon: material/weather-night
         name: 暗黑主题
   font: false
+  logo: logo.png
+  favicon: favicon.ico
   icon:
     repo: fontawesome/brands/github
     edit: material/file-edit
