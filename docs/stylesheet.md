@@ -28,20 +28,15 @@ StyleSheet.getDefault()
 // 不使用样式
 let btn = Button("Click", pos, 120.0, 36.0,
     "Microsoft YaHei", 14.0, SizeScale.scalable(), Anchor.Center,
-    ButtonStyle.fromTheme(), { => }）
+    ButtonStyle.fromTheme(), { => })
 
 // 使用样式
 let btn = Button.styled("btn", "Click",
     pos, 120.0, 36.0,
-    ButtonStyle.fromTheme(), { => }）
+    ButtonStyle.fromTheme(), { => })
 ```
 
-支持 `.styled()` 的控件：
-
-- Button, Label
-- TextBox, TextEdit
-- CheckBox, RadioButton
-- Slider
+支持 `.styled()` 的控件：Button, Label, TextBox, TextEdit, CheckBox, RadioButton, Slider。
 
 ## StyleProperties
 
@@ -65,17 +60,6 @@ StyleProperties()
 ```
 
 每个 `.with*()` 方法返回一个新的 `StyleProperties`，支持链式调用。
-
-## 样式解析
-
-`StyleSheet.resolve(name)` 返回 `StyleProperties`。如果样式未定义，所有属性为 `None`，控件使用默认值。
-
-```cj
-let props = StyleSheet.getDefault().resolve("btn")
-// props.fontFamily  = Some("Microsoft YaHei")
-// props.fontSize    = Some(14.0)
-// props.cornerRadius = None（未定义）
-```
 
 ## 完整示例
 

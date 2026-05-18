@@ -36,12 +36,7 @@ let btn = Button.styled("btn", "Click",
     ButtonStyle.fromTheme(), { => })
 ```
 
-Widgets supporting `.styled()`:
-
-- Button, Label
-- TextBox, TextEdit
-- CheckBox, RadioButton
-- Slider
+Widgets supporting `.styled()`: Button, Label, TextBox, TextEdit, CheckBox, RadioButton, Slider.
 
 ## StyleProperties
 
@@ -65,17 +60,6 @@ StyleProperties()
 ```
 
 Each `.with*()` method returns a new `StyleProperties`, enabling method chaining.
-
-## Style Resolution
-
-`StyleSheet.resolve(name)` returns a `StyleProperties`. If the style is not defined, all properties are `None` and widgets use defaults.
-
-```cj
-let props = StyleSheet.getDefault().resolve("btn")
-// props.fontFamily  = Some("Microsoft YaHei")
-// props.fontSize    = Some(14.0)
-// props.cornerRadius = None (not defined)
-```
 
 ## Full Example
 

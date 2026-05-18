@@ -113,9 +113,8 @@ Supported features:
 let cb = CheckBox("Enable notifications",
     Position.abs(0.0, 0.0),
     "Microsoft YaHei", 13.0, SizeScale.scalable(),
-    CheckBoxStyle.fromTheme(), true)  // true = checked by default
+    CheckBoxStyle.fromTheme(), true)
 
-// With StyleSheet
 let cb = CheckBox.styled("btn", "Enable notifications",
     Position.abs(0.0, 0.0),
     CheckBoxStyle.fromTheme(), true)
@@ -135,9 +134,7 @@ let rb2 = RadioButton.styled("btn", "Option B",
 
 group.add(rb1)
 group.add(rb2)
-group.setOnSelectionChanged({ idx =>
-    println("Selected: ${idx}")
-})
+group.setOnSelectionChanged({ idx => println("Selected: ${idx}") })
 ```
 
 ---
@@ -148,7 +145,6 @@ group.setOnSelectionChanged({ idx =>
 let slider = Slider.styled("input",
     Position.abs(0.0, 0.0), 200.0,
     SliderStyle.fromTheme(), 0.0, 100.0, 65.0)
-// min=0.0, max=100.0, initial=65.0
 ```
 
 ---
@@ -157,7 +153,6 @@ let slider = Slider.styled("input",
 
 ```cj
 let toggle = ToggleSwitch(true, ToggleSwitchStyle.fromTheme())
-// true = on by default
 ```
 
 ---
@@ -166,8 +161,6 @@ let toggle = ToggleSwitch(true, ToggleSwitchStyle.fromTheme())
 
 ```cj
 let spin = SpinBox(0.0, 120.0, 25.0, 1.0, true)
-// min=0.0, max=120.0, initial=25.0, step=1.0, integer=true
-
 spin.setOnValueChanged({ v => println("Value: ${v}") })
 ```
 
@@ -194,7 +187,6 @@ combo.setOnSelectionChanged({ idx, label =>
 
 ```cj
 ProgressBar(0.0, 100.0, 72.0, ProgressBarStyle.fromTheme())
-// min=0.0, max=100.0, current=72.0
 ```
 
 ---
@@ -221,14 +213,13 @@ hbox.add(rightPanel, LayoutParams.fill().withWeight(0.6))
 ```cj
 let group = GroupBox("User Settings")
 let inner = VBox(8.0, 12.0)
-inner.add(label, LayoutParams.fixed(900.0, 28.0))
 group.setContent(inner)
 ```
 
 ### SplitPane
 
 ```cj
-let split = SplitPane(true)  // true = vertical split
+let split = SplitPane(true)
 split.setLeft(leftPanel)
 split.setRight(rightPanel)
 ```
@@ -238,11 +229,8 @@ split.setRight(rightPanel)
 ```cj
 let scroll = ScrollArea()
 let vbox = VBox(10.0, 20.0)
-// ... add content to vbox ...
 scroll.setContent(vbox)
 ```
-
-Scrollbars auto-hide and support smooth scrolling.
 
 ---
 
@@ -251,37 +239,21 @@ Scrollbars auto-hide and support smooth scrolling.
 ### ListView
 
 ```cj
-let listView = ListView(28.0)  // row height
+let listView = ListView(28.0)
 let items = ArrayList<String>()
-for (i in 0..200) {
-    items.add("Item #${i + 1}")
-}
+for (i in 0..200) { items.add("Item #${i + 1}") }
 listView.setData(items)
 ```
-
----
 
 ### TreeView
 
 ```cj
 let treeView = TreeView()
-
 let root = TreeNode("src/")
 root.expanded = true
-
-let child = TreeNode("button.cj")
-root.addChild(child)
-
+root.addChild(TreeNode("button.cj"))
 treeView.addNode(root)
 ```
-
-| TreeNode property | Type | Description |
-|---------------|------|------|
-| `text` | String | Node text |
-| `expanded` | Bool | Whether expanded |
-| `addChild(node)` | — | Add child node |
-
----
 
 ### TableView
 
@@ -289,14 +261,6 @@ treeView.addNode(root)
 let tableView = TableView()
 tableView.addColumn(TableColumn("#", 50.0, false, false, 1))
 tableView.addColumn(TableColumn("Name", 180.0, true, true, 0))
-
-let rowData = ArrayList<ArrayList<String>>()
-for (row in data) {
-    let row = ArrayList<String>()
-    row.add("01")
-    row.add("Item")
-    rowData.add(row)
-}
 tableView.setData(rowData)
 ```
 
@@ -307,8 +271,6 @@ tableView.setData(rowData)
 | `resizable` | Bool | Whether resizable |
 | `sortable` | Bool | Whether sortable |
 | `alignment` | Int32 | Alignment (0=left, 1=center, 2=right) |
-
----
 
 ### TabView
 
@@ -331,10 +293,8 @@ bar.setParentWindow(win)
 
 let fileMenu = MenuItem("File", { => () })
 fileMenu.addChild(MenuItem("New", { => println("New") }, "", true))
-fileMenu.addChild(MenuItem("Save", { => println("Save") }, "Ctrl+S", true))
 fileMenu.addChild(MenuItem.separator())
 fileMenu.addChild(MenuItem("Exit", { => println("Exit") }, "", true))
-
 bar.addItem(fileMenu)
 ```
 
@@ -344,10 +304,6 @@ bar.addItem(fileMenu)
 | `action` | `() -> Unit` | Click callback |
 | `shortcut` | String | Shortcut hint |
 | `enabled` | Bool | Whether enabled |
-
-`MenuItem.separator()` creates a separator line.
-
----
 
 ### ContextMenu
 
@@ -359,18 +315,6 @@ win.setContextMenu(menu)
 
 ---
 
-### Popover
-
-Used for creating popup hints or bubble menus.
-
----
-
-### Tooltip
-
-Tooltips are automatically managed by the system and shown after a hover timeout.
-
----
-
 ## Other Widgets
 
 ### Image
@@ -379,16 +323,11 @@ Tooltips are automatically managed by the system and shown after a hover timeout
 let img = Image("awa.png")
 ```
 
----
-
 ### Separator
 
 ```cj
 Separator(true, SeparatorStyle.fromTheme())
-// true = horizontal, false = vertical
 ```
-
----
 
 ### MessageBox
 
@@ -407,31 +346,28 @@ MessageBox.show("Title", "Message text", MBType.Info)
 
 ## Style Struct Quick Reference
 
-All widgets have corresponding Style structs following a unified pattern:
+All widgets have corresponding Style structs following a unified pattern, each providing a `fromTheme()` static method:
 
-| Widget | Style Struct | `isThemeBased` |
-|------|-------------|----------------|
-| Button | `ButtonStyle` | Yes |
-| Label | Via `Color` param | No |
-| TextBox | `TextBoxStyle` | Yes |
-| TextEdit | `TextEditStyle` | Yes |
-| CheckBox | `CheckBoxStyle` | Yes |
-| RadioButton | `RadioButtonStyle` | Yes |
-| Slider | `SliderStyle` | Yes |
-| ToggleSwitch | `ToggleSwitchStyle` | Yes |
-| SpinBox | `SpinBoxStyle` | Yes |
-| ComboBox | `ComboBoxStyle` | Yes |
-| ProgressBar | `ProgressBarStyle` | Yes |
-| TabView | `TabViewStyle` | Yes |
-| TableView | `TableViewStyle` | Yes |
-| ListView | `ListViewStyle` | Yes |
-| TreeView | `TreeViewStyle` | Yes |
-| ScrollArea | `ScrollAreaStyle` | Yes |
-| GroupBox | `GroupBoxStyle` | Yes |
-| SplitPane | `SplitPaneStyle` | Yes |
-| MenuBar | `MenuBarStyle` | Yes |
-| ContextMenu | `ContextMenuStyle` | Yes |
-| Popover | `PopoverStyle` | Yes |
-| Separator | `SeparatorStyle` | Yes |
-
-Each Style struct provides a `fromTheme()` static method for the theme default.
+| Widget | Style Struct |
+|------|-------------|
+| Button | `ButtonStyle` |
+| TextBox | `TextBoxStyle` |
+| TextEdit | `TextEditStyle` |
+| CheckBox | `CheckBoxStyle` |
+| RadioButton | `RadioButtonStyle` |
+| Slider | `SliderStyle` |
+| ToggleSwitch | `ToggleSwitchStyle` |
+| SpinBox | `SpinBoxStyle` |
+| ComboBox | `ComboBoxStyle` |
+| ProgressBar | `ProgressBarStyle` |
+| TabView | `TabViewStyle` |
+| TableView | `TableViewStyle` |
+| ListView | `ListViewStyle` |
+| TreeView | `TreeViewStyle` |
+| ScrollArea | `ScrollAreaStyle` |
+| GroupBox | `GroupBoxStyle` |
+| SplitPane | `SplitPaneStyle` |
+| MenuBar | `MenuBarStyle` |
+| ContextMenu | `ContextMenuStyle` |
+| Popover | `PopoverStyle` |
+| Separator | `SeparatorStyle` |

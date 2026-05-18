@@ -160,7 +160,7 @@ c.accent        // 强调色
 
 ## 样式结构体与主题
 
-每个控件的 Style 结构体都有一个 `isThemeBased` 字段。当为 `true` 时，`fromTheme()` 会使用当前主题颜色；当为 `false` 时，使用自定义颜色。
+每个控件的 Style 结构体都有一个 `isThemeBased` 字段。当为 `true` 时，`fromTheme()` 会使用当前主题颜色：
 
 ```cj
 // 使用主题颜色（跟随主题切换自动变化）
@@ -175,19 +175,16 @@ ButtonStyle.custom(bg, text, 4.0, 1.0, border)
 所有颜色使用 `Color` 结构体：
 
 ```cj
-// RGB 创建
-Color.rgb(255, 100, 50)
-
-// RGBA 创建（带透明度）
-Color.rgba(255, 100, 50, 200)
+Color.rgb(255, 100, 50)       // RGB
+Color.rgba(255, 100, 50, 200) // RGBA（带透明度）
 
 // 预定义颜色
 Color.WHITE
 Color.BLACK
-Color.LIGHT_GRAY
-Color.GRAY
-Color.DARK_GRAY
 Color.RED
 Color.GREEN
 Color.BLUE
+Color.LIGHT_GRAY
+Color.GRAY
+Color.DARK_GRAY
 ```

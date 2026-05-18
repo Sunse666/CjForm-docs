@@ -21,7 +21,7 @@ let win = Window("My App", 800, 600)
 ### Window Lifecycle
 
 ```cj
-win.show()    // Show the window
+win.show()        // Show the window
 let result = win.run()  // Enter message loop, blocks until window closes
 ```
 
@@ -161,14 +161,11 @@ ShortcutManager.getInstance().register(68, true, false, false, { =>
     Theme.toggle()
     win.setBackgroundColor(Theme.colors().bgSecondary)
 })
-// Parameters: (virtual key code, ctrl, shift, alt, callback)
 
 // Persistence
 ShortcutManager.getInstance().saveConfig()    // Save to cjform.ini
 ShortcutManager.getInstance().loadConfig(...) // Load from cjform.ini
 ```
-
-The second bool parameter of `register()` being `true` means the Ctrl modifier is required.
 
 ---
 

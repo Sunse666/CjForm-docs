@@ -222,9 +222,9 @@ extra_javascript:
 extra_css:
   - https://xiaokang2022.github.io/css/extra.css
   - stylesheets/extra.css
-  - https://unpkg.com/katex@latest/dist/katex.min.css
-  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
-  - https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css
+  - https://unpkg.com/katex@latest/dist/katex.min.css # 数学表达式
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css # 图标字体库
+  - https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css # 设置字体（霞鹜文楷）
 
 plugins:
   - search:

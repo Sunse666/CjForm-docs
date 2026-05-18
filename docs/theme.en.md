@@ -160,7 +160,7 @@ c.accent        // Accent color
 
 ## Style Structs & Themes
 
-Each widget's Style struct has an `isThemeBased` field. When `true`, `fromTheme()` uses the current theme colors; when `false`, custom colors are used.
+Each widget's Style struct has an `isThemeBased` field. When `true`, `fromTheme()` uses the current theme colors:
 
 ```cj
 // Use theme colors (auto-adapt on theme switch)
@@ -175,19 +175,16 @@ ButtonStyle.custom(bg, text, 4.0, 1.0, border)
 All colors use the `Color` struct:
 
 ```cj
-// RGB
-Color.rgb(255, 100, 50)
-
-// RGBA (with alpha)
-Color.rgba(255, 100, 50, 200)
+Color.rgb(255, 100, 50)       // RGB
+Color.rgba(255, 100, 50, 200) // RGBA (with alpha)
 
 // Predefined colors
 Color.WHITE
 Color.BLACK
-Color.LIGHT_GRAY
-Color.GRAY
-Color.DARK_GRAY
 Color.RED
 Color.GREEN
 Color.BLUE
+Color.LIGHT_GRAY
+Color.GRAY
+Color.DARK_GRAY
 ```

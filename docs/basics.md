@@ -21,7 +21,7 @@ let win = Window("My App", 800, 600)
 ### 窗口生命周期
 
 ```cj
-win.show()    // 显示窗口
+win.show()        // 显示窗口
 let result = win.run()  // 进入消息循环，阻塞直到窗口关闭
 ```
 
@@ -161,14 +161,11 @@ ShortcutManager.getInstance().register(68, true, false, false, { =>
     Theme.toggle()
     win.setBackgroundColor(Theme.colors().bgSecondary)
 })
-// 参数: (虚拟键码, ctrl, shift, alt, 回调)
 
 // 持久化
 ShortcutManager.getInstance().saveConfig()    // 保存到 cjform.ini
 ShortcutManager.getInstance().loadConfig(...) // 从 cjform.ini 加载
 ```
-
-`register()` 的第二个 bool 参数为 `true` 表示需要 Ctrl 修饰键。
 
 ---
 

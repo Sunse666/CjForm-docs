@@ -113,9 +113,8 @@ editor.setText("Welcome to CJForm TextEdit!\n\nType here...")
 let cb = CheckBox("Enable notifications",
     Position.abs(0.0, 0.0),
     "Microsoft YaHei", 13.0, SizeScale.scalable(),
-    CheckBoxStyle.fromTheme(), true)  // true = 默认勾选
+    CheckBoxStyle.fromTheme(), true)
 
-// 使用样式表
 let cb = CheckBox.styled("btn", "Enable notifications",
     Position.abs(0.0, 0.0),
     CheckBoxStyle.fromTheme(), true)
@@ -135,9 +134,7 @@ let rb2 = RadioButton.styled("btn", "Option B",
 
 group.add(rb1)
 group.add(rb2)
-group.setOnSelectionChanged({ idx =>
-    println("Selected: ${idx}")
-})
+group.setOnSelectionChanged({ idx => println("Selected: ${idx}") })
 ```
 
 ---
@@ -148,7 +145,6 @@ group.setOnSelectionChanged({ idx =>
 let slider = Slider.styled("input",
     Position.abs(0.0, 0.0), 200.0,
     SliderStyle.fromTheme(), 0.0, 100.0, 65.0)
-// min=0.0, max=100.0, 初始值=65.0
 ```
 
 ---
@@ -157,7 +153,6 @@ let slider = Slider.styled("input",
 
 ```cj
 let toggle = ToggleSwitch(true, ToggleSwitchStyle.fromTheme())
-// true = 默认开启
 ```
 
 ---
@@ -166,8 +161,6 @@ let toggle = ToggleSwitch(true, ToggleSwitchStyle.fromTheme())
 
 ```cj
 let spin = SpinBox(0.0, 120.0, 25.0, 1.0, true)
-// min=0.0, max=120.0, 初始值=25.0, 步长=1.0, 整数模式=true
-
 spin.setOnValueChanged({ v => println("Value: ${v}") })
 ```
 
@@ -194,7 +187,6 @@ combo.setOnSelectionChanged({ idx, label =>
 
 ```cj
 ProgressBar(0.0, 100.0, 72.0, ProgressBarStyle.fromTheme())
-// min=0.0, max=100.0, 当前值=72.0
 ```
 
 ---
@@ -221,14 +213,13 @@ hbox.add(rightPanel, LayoutParams.fill().withWeight(0.6))
 ```cj
 let group = GroupBox("User Settings")
 let inner = VBox(8.0, 12.0)
-inner.add(label, LayoutParams.fixed(900.0, 28.0))
 group.setContent(inner)
 ```
 
 ### SplitPane 分割面板
 
 ```cj
-let split = SplitPane(true)  // true = 垂直分割
+let split = SplitPane(true)
 split.setLeft(leftPanel)
 split.setRight(rightPanel)
 ```
@@ -238,11 +229,8 @@ split.setRight(rightPanel)
 ```cj
 let scroll = ScrollArea()
 let vbox = VBox(10.0, 20.0)
-// ... 添加内容到 vbox ...
 scroll.setContent(vbox)
 ```
-
-滚动条自动显隐，支持平滑滚动。
 
 ---
 
@@ -251,37 +239,21 @@ scroll.setContent(vbox)
 ### ListView 列表视图
 
 ```cj
-let listView = ListView(28.0)  // 行高
+let listView = ListView(28.0)
 let items = ArrayList<String>()
-for (i in 0..200) {
-    items.add("Item #${i + 1}")
-}
+for (i in 0..200) { items.add("Item #${i + 1}") }
 listView.setData(items)
 ```
-
----
 
 ### TreeView 树形视图
 
 ```cj
 let treeView = TreeView()
-
 let root = TreeNode("src/")
 root.expanded = true
-
-let child = TreeNode("button.cj")
-root.addChild(child)
-
+root.addChild(TreeNode("button.cj"))
 treeView.addNode(root)
 ```
-
-| TreeNode 属性 | 类型 | 说明 |
-|---------------|------|------|
-| `text` | String | 节点文本 |
-| `expanded` | Bool | 是否展开 |
-| `addChild(node)` | — | 添加子节点 |
-
----
 
 ### TableView 表格视图
 
@@ -289,14 +261,6 @@ treeView.addNode(root)
 let tableView = TableView()
 tableView.addColumn(TableColumn("#", 50.0, false, false, 1))
 tableView.addColumn(TableColumn("Name", 180.0, true, true, 0))
-
-let rowData = ArrayList<ArrayList<String>>()
-for (row in data) {
-    let row = ArrayList<String>()
-    row.add("01")
-    row.add("Item")
-    rowData.add(row)
-}
 tableView.setData(rowData)
 ```
 
@@ -307,8 +271,6 @@ tableView.setData(rowData)
 | `resizable` | Bool | 是否可调整宽度 |
 | `sortable` | Bool | 是否可排序 |
 | `alignment` | Int32 | 对齐（0=左, 1=中, 2=右） |
-
----
 
 ### TabView 标签页
 
@@ -331,10 +293,8 @@ bar.setParentWindow(win)
 
 let fileMenu = MenuItem("File", { => () })
 fileMenu.addChild(MenuItem("New", { => println("New") }, "", true))
-fileMenu.addChild(MenuItem("Save", { => println("Save") }, "Ctrl+S", true))
 fileMenu.addChild(MenuItem.separator())
 fileMenu.addChild(MenuItem("Exit", { => println("Exit") }, "", true))
-
 bar.addItem(fileMenu)
 ```
 
@@ -345,30 +305,12 @@ bar.addItem(fileMenu)
 | `shortcut` | String | 快捷键提示 |
 | `enabled` | Bool | 是否可用 |
 
-`MenuItem.separator()` 创建分隔线。
-
----
-
 ### ContextMenu 右键菜单
 
 ```cj
 let menu = ContextMenu()
 menu.addItem(MenuItem("Copy", { => copy() }, "Ctrl+C", true))
 win.setContextMenu(menu)
-```
-
----
-
-### Popover 弹出框
-
-用于创建弹出提示或气泡菜单。
-
----
-
-### Tooltip 工具提示
-
-```cj
-// tooltip 由系统自动管理，悬停指定时间后显示
 ```
 
 ---
@@ -381,16 +323,11 @@ win.setContextMenu(menu)
 let img = Image("awa.png")
 ```
 
----
-
 ### Separator 分隔线
 
 ```cj
 Separator(true, SeparatorStyle.fromTheme())
-// true = 水平线, false = 垂直线
 ```
-
----
 
 ### MessageBox 消息框
 
@@ -409,31 +346,28 @@ MessageBox.show("Title", "Message text", MBType.Info)
 
 ## 样式结构体速查
 
-所有控件都有对应的 Style 结构体，遵循统一模式：
+所有控件都有对应的 Style 结构体，遵循统一模式，均提供 `fromTheme()` 静态方法：
 
-| 控件 | Style 结构体 | `isThemeBased` |
-|------|-------------|----------------|
-| Button | `ButtonStyle` | 是 |
-| Label | 通过 `Color` 参数 | 否 |
-| TextBox | `TextBoxStyle` | 是 |
-| TextEdit | `TextEditStyle` | 是 |
-| CheckBox | `CheckBoxStyle` | 是 |
-| RadioButton | `RadioButtonStyle` | 是 |
-| Slider | `SliderStyle` | 是 |
-| ToggleSwitch | `ToggleSwitchStyle` | 是 |
-| SpinBox | `SpinBoxStyle` | 是 |
-| ComboBox | `ComboBoxStyle` | 是 |
-| ProgressBar | `ProgressBarStyle` | 是 |
-| TabView | `TabViewStyle` | 是 |
-| TableView | `TableViewStyle` | 是 |
-| ListView | `ListViewStyle` | 是 |
-| TreeView | `TreeViewStyle` | 是 |
-| ScrollArea | `ScrollAreaStyle` | 是 |
-| GroupBox | `GroupBoxStyle` | 是 |
-| SplitPane | `SplitPaneStyle` | 是 |
-| MenuBar | `MenuBarStyle` | 是 |
-| ContextMenu | `ContextMenuStyle` | 是 |
-| Popover | `PopoverStyle` | 是 |
-| Separator | `SeparatorStyle` | 是 |
-
-每个 Style 结构体均提供 `fromTheme()` 静态方法获取主题默认样式。
+| 控件 | Style 结构体 |
+|------|-------------|
+| Button | `ButtonStyle` |
+| TextBox | `TextBoxStyle` |
+| TextEdit | `TextEditStyle` |
+| CheckBox | `CheckBoxStyle` |
+| RadioButton | `RadioButtonStyle` |
+| Slider | `SliderStyle` |
+| ToggleSwitch | `ToggleSwitchStyle` |
+| SpinBox | `SpinBoxStyle` |
+| ComboBox | `ComboBoxStyle` |
+| ProgressBar | `ProgressBarStyle` |
+| TabView | `TabViewStyle` |
+| TableView | `TableViewStyle` |
+| ListView | `ListViewStyle` |
+| TreeView | `TreeViewStyle` |
+| ScrollArea | `ScrollAreaStyle` |
+| GroupBox | `GroupBoxStyle` |
+| SplitPane | `SplitPaneStyle` |
+| MenuBar | `MenuBarStyle` |
+| ContextMenu | `ContextMenuStyle` |
+| Popover | `PopoverStyle` |
+| Separator | `SeparatorStyle` |
