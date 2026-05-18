@@ -1,0 +1,234 @@
+site_name: CJForm
+site_url: ""
+repo_url: https://github.com/Sunse666/CjForm
+repo_name: Sunse666/CjForm
+edit_uri: https://github.com/Sunse666/CjForm-docs/edit/main/docs/
+edit_uri_template: ""
+site_description: CJForm 的官方文档网站
+site_author: Sunse666
+copyright: Copyright &copy; 2026 Sunse666
+remote_branch: gh-pages
+remote_name: origin
+docs_dir: docs/
+site_dir: site
+dev_addr: 127.0.0.1:8080
+use_directory_urls: true
+strict: false
+
+markdown_extensions:
+  ###### Python Markdown 配置
+
+  - admonition
+  - meta
+  - sane_lists
+  - smarty
+  - wikilinks
+
+  - toc:
+      marker: ""
+      anchorlink: false
+      permalink: "&para;"
+      permalink_title: ""
+      permalink_leading: false
+      baselevel: 1
+      separator: "-"
+      toc_depth: 4
+      slugify:
+        !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+  ###### PyMdown Extensions 配置
+
+  - pymdownx.extra
+
+  - pymdownx.blocks.definition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.html
+  - pymdownx.blocks.tab:
+      alternate_style: True
+      combine_header_slug: True
+      slugify:
+        !!python/object/apply:pymdownx.slugs.slugify { kwds: { case: lower } }
+  - pymdownx.blocks.admonition:
+      types:
+        - new
+        - settings
+        - note
+        - abstract
+        - info
+        - tip
+        - success
+        - question
+        - warning
+        - failure
+        - danger
+        - bug
+        - example
+        - quote
+  - pymdownx.blocks.caption:
+      types:
+        - name: figure-caption
+          prefix: "图 {} "
+        - name: table-caption
+          prefix: "表 {} "
+
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.fancylists
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.saneheaders
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+
+  - pymdownx.arithmatex:
+      generic: true
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+  - pymdownx.escapeall:
+      hardbreak: true
+      nbsp: true
+
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      default_lang: cj
+
+  - pymdownx.magiclink:
+      user: "Sunse666"
+      repo: "CjForm"
+      hide_protocol: true
+      repo_url_shorthand: true
+      repo_url_shortener: true
+      social_url_shorthand: true
+      social_url_shortener: true
+      normalize_issue_symbols: true
+
+  - pymdownx.snippets:
+      url_download: true
+      url_timeout: 10.0
+      url_max_size: 33554432
+
+  - pymdownx.superfences:
+      disable_indented_code_blocks: false
+      preserve_tabs: true
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: markmap
+          class: language-markmap
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      separator: "-"
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {}
+
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: zh
+  features:
+    - navigation.tracking
+    - navigation.path
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - announce.dismiss
+    - navigation.footer
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/theme-light-dark
+        name: 系统主题
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: 明亮主题
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: yellow
+      toggle:
+        icon: material/weather-night
+        name: 暗黑主题
+  font: false
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/file-edit
+    view: material/file-eye
+    tag:
+      default: material/tag
+
+extra:
+  generator: false
+  status:
+    new: 最近添加
+    deprecated: 已废弃
+  homepage: .
+  tags:
+    _:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Sunse666/CjForm/
+      name: GitHub
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search:
+  - meta:
+  - tags:
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: zh
+          name: 简体中文
+          build: true
+          default: true
+        - locale: en
+          name: English
+          build: true
+
+nav:
+  - 站点主页:
+      - index.md
+      - 快速开始: getting-started.md
+      - 基本使用: basics.md
+      - 架构说明: architecture.md
+
+  - 控件参考:
+      - controls.md
+
+  - 主题与样式:
+      - theme.md
+      - stylesheet.md
