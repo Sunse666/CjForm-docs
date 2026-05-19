@@ -1,6 +1,6 @@
 # 控件参考
 
-CJForm 提供 25+ 种自绘控件，涵盖基础输入、数据展示、布局容器等类别。
+CJForm 提供 30+ 种自绘控件，涵盖基础输入、数据展示、布局容器等类别。所有交互控件支持统一的 `.onXxx()` 链式回调 API。
 
 ---
 
@@ -191,6 +191,52 @@ ProgressBar(0.0, 100.0, 72.0, ProgressBarStyle.fromTheme())
 
 ---
 
+### StatusBar 状态栏
+
+```cj
+let statusBar = StatusBar()
+statusBar.setText("Ready  |  CJForm v1.4  |  Cangjie UI Library")
+```
+
+---
+
+### LinkLabel 超链接
+
+```cj
+let link = LinkLabel("GitHub", Position.abs(0.0, 0.0),
+    "Microsoft YaHei", 14.0, SizeScale.fixed(), Anchor.CenterLeft,
+    { => println("clicked!") })
+
+// 链式设置回调
+link.onClick() { println("clicked!") }
+```
+
+---
+
+### Toolbar 工具栏
+
+```cj
+let toolbar = Toolbar()
+toolbar.addItem("New", { => println("New") })
+toolbar.addItem("Save", { => println("Save") })
+```
+
+---
+
+## 统一回调 API
+
+所有交互控件支持链式 `.onXxx()` 回调，返回 `this`：
+
+| 控件 | 回调 |
+|------|------|
+| Button, RadioButton | `.onClick() { => ... }` |
+| CheckBox | `.onClick() { => ... }` / `.onToggle() { checked => ... }` |
+| ToggleSwitch | `.onClick() { => ... }` / `.onToggle() { on => ... }` |
+| Slider, SpinBox | `.onValueChanged() { v => ... }` |
+| ComboBox | `.onSelectionChanged() { idx, label => ... }` |
+| TextBox, TextEdit | `.onTextChanged() { text => ... }` |
+| LinkLabel | `.onClick() { => ... }` |
+
 ## 布局容器
 
 ### VBox 垂直布局
@@ -370,4 +416,7 @@ MessageBox.show("Title", "Message text", MBType.Info)
 | MenuBar | `MenuBarStyle` |
 | ContextMenu | `ContextMenuStyle` |
 | Popover | `PopoverStyle` |
+| StatusBar | — |
+| LinkLabel | — |
+| Toolbar | — |
 | Separator | `SeparatorStyle` |

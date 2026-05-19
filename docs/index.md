@@ -18,7 +18,7 @@ icon: material/home
 
 CJForm 是**仓颉语言（Cangjie）**的 Windows 原生 UI 库。通过 C++ 桥接层调用 Win32 API / GDI+，全部控件自绘，不依赖任何第三方 UI 框架。
 
-提供 Dark / Light 双主题、声明式 StyleSheet 系统、完整的布局引擎和动画系统，覆盖 25+ 种常用控件。
+提供 Dark / Light 双主题、声明式 StyleSheet 系统、统一回调 API、完整的布局引擎和动画系统，覆盖 30+ 种常用控件。
 
 ## 核心功能
 
@@ -45,6 +45,10 @@ CJForm 是**仓颉语言（Cangjie）**的 Windows 原生 UI 库。通过 C++ �
 === "数据视图"
 
     ListView / TreeView / TableView / TabView 完整数据展示能力。
+
+=== "统一回调"
+
+    所有控件支持 `.onClick()` / `.onToggle()` / `.onValueChanged()` 链式回调，返回 this 支持级联。
 
 ## 快速链接
 

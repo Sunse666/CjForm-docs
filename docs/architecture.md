@@ -7,10 +7,11 @@
     ↓
 控件层（Widget 树、事件路由、布局计算）
     ↓
-Canvas 渲染抽象
+ffi_safe.cj — 安全 FFI 封装（CString 管理）
     ↓
-bridge.dll（C++ Win32 / GDI+ FFI）
-```
+bridge.cj — 外部函数声明
+    ↓
+bridge.dll（C++ Win32 / GDI+ FFI，9 个模块）
 
 ## 各层职责
 
@@ -46,7 +47,10 @@ bridge.dll（C++ Win32 / GDI+ FFI）
 | `tooltip.cj` | 工具提示 |
 | `image.cj` | 图片显示 |
 | `separator.cj` | 分隔线 |
-| `dialogs.cj` | MessageBox 对话框 |
+| `dialogs.cj` | MessageBox 对话框 + ShortcutManager |
+| `status_bar.cj` | 状态栏 |
+| `link_label.cj` | 超链接标签 |
+| `toolbar.cj` | 工具栏 |
 
 ### 2. 控件层
 
@@ -56,10 +60,15 @@ bridge.dll（C++ Win32 / GDI+ FFI）
 |------|------|
 | `widget.cj` | `Widget` 接口定义（paint / hitTest / handleEvent / updateAnimation） |
 | `event.cj` | 鼠标和键盘事件定义 |
-| `focus_manager.cj` | 焦点管理（Tab 切换） |
-| `position.cj` | Position 抽象（绝对/百分比） |
+| `focus_manager.cj` | `Focusable` 接口 + FocusManager（Tab 切换，支持 TextBox/TextEdit/SpinBox/ComboBox） |
+| `position.cj` | Position / SizeScale / Anchor 定义 |
+| `layout.cj` | LayoutFrame / LayoutParams 弹性布局 |
 | `shadow.cj` | 阴影效果 |
-| `tooltip.cj` | 工具提示管理 |
+| `ffi_safe.cj` | 安全 FFI 封装（CString 管理，17 个包装函数） |
+| `bridge.cj` | 外部 C 函数声明 |
+| `animation.cj` | 动画状态机 + 缓动函数 |
+| `theme.cj` | Theme + ThemeColors（45 色 Token） |
+| `style_sheet.cj` | StyleSheet 声明式样式复用 |
 
 ### 3. Canvas 渲染抽象
 
@@ -73,17 +82,30 @@ bridge.dll（C++ Win32 / GDI+ FFI）
 
 ### 4. bridge.dll 桥接层
 
-`bridge.cpp` 使用 Win32 API 和 GDI+ 实现底层功能：
+原 898 行单体 `bridge.cpp` 已拆分为 9 个模块：
 
+| 文件 | 职责 |
+|------|------|
+| `bridge_common.h` | 共享头文件 + 84 个导出函数声明 |
+| `window.cpp` | 窗口过程、创建/显示/关闭、消息泵、定时器、DPI 感知 |
+| `render.cpp` | GDI+ 绘制（填充/文字/阴影/圆角/裁剪/测量） |
+| `events.cpp` | 鼠标/键盘/滚轮/拖放/窗口位置事件 |
+| `edit.cpp` | 原生 Edit 控件 |
+| `clipboard.cpp` | 剪贴板 |
+| `config.cpp` | INI 配置读写 |
+| `image.cpp` | 图片加载/绘制/释放 |
+| `dialog.cpp` | 文件打开/保存对话框 |
+
+底层技术栈：
 - 窗口创建（`CreateWindowExW`）
 - 消息循环（`GetMessage` / `DispatchMessage`）
 - GDI+ 渲染（`Graphics` / `SolidBrush` / `GraphicsPath`）
 - 文本测量（`MeasureString`）
-- DWM 暗色模式（`DwmSetWindowAttribute`）
+- DWM 暗色模式 + DPI 感知（`SetProcessDPIAware`）
 - 文件拖放（`DragAcceptFiles` / `WM_DROPFILES`）
-- 窗口状态持久化（`GetWindowPlacement` / `SetWindowPlacement`）
+- 字体 DPI 自动缩放（`GetDeviceCaps(LOGPIXELSX)`)）
 
-仓颉侧通过 `bridge.cj` 中的 `foreign func` 声明调用这些 C++ 函数。
+仓颉侧通过 `bridge.cj` 中的 `foreign func` 声明调用这些 C++ 函数，`ffi_safe.cj` 统一管理 CString 分配释放。
 
 ## 数据流
 
